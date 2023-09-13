@@ -65,9 +65,6 @@ pipeline {
         always {
             // Clean up - remove the built Docker image locally
             script {
-                // Define the Docker image name and tag
-                
-                
                 // Remove the Docker image using the 'sh' step
                 sh "docker rmi -f ${DOCKER_IMAGE_NAME}"
             }
