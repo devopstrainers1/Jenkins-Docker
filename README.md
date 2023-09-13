@@ -61,7 +61,7 @@ In your Jenkins pipeline script (`Jenkinsfile`), you can reference the environme
 ```groovy
 environment {
         DOCKER_HUB_CREDENTIALS = 'Docker'
-        dockerImageName = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
+        DOCKER_IMAGE_NAME = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
     }
 ```
 
