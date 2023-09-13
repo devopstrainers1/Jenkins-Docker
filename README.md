@@ -1,4 +1,3 @@
-```markdown
 # Jenkins Pipeline for Building and Pushing Docker Images
 
 ## Overview
