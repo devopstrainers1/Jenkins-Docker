@@ -24,7 +24,7 @@ This Jenkins pipeline automates the process of building a Maven-based Java appli
 
 ### 5. Post-build Cleanup
 
-- After successfully pushing the Docker image to Docker Hub, this post-build stage removes the locally built Docker image to avoid cluttering the Jenkins server.
+- this post-build stage removes the locally built Docker image to avoid cluttering the Jenkins server.
 
 
 
