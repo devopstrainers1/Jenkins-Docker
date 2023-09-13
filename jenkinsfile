@@ -1,0 +1,77 @@
+pipeline {
+    agent any
+    
+    tools {
+        
+        maven 'Maven-Tool'
+        
+    }
+
+    environment {
+        IMAGE_NAME = "shahid199578/${env.JOB_NAME.toLowerCase()}"
+        DOCKER_HUB_CREDENTIALS = 'Docker'
+        dockerImageName = "${IMAGE_NAME}:${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                // Checkout the Dockerfile and any other necessary files from your repository
+                git branch: 'main' , credentialsId: '', url: 'https://github.com/Shahid199578/dockerimagewithjenkins.git'
+            }
+        }
+        stage ('Maven Build') {
+            
+            steps {
+                
+                sh 'mvn clean package'
+                
+            }
+            
+            post {
+                
+                success {
+                    
+                    archiveArtifacts artifacts: '*/**.war'
+                    
+                }
+            
+            }
+        
+        }
+        
+        stage('Build docker image') {
+            steps {        
+                // Build the Docker image
+                script {
+                    docker.build("${dockerImageName}", ".")
+                }
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                // Log in to Docker Hub using the provided credentials
+                script {
+                    docker.withRegistry('', "${DOCKER_HUB_CREDENTIALS}") {
+                        // Push the built image to Docker Hub
+                        docker.image("${dockerImageName}").push()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    post {
+        always {
+            // Clean up - remove the built Docker image locally
+            script {
+                // Define the Docker image name and tag
+                
+                
+                // Remove the Docker image using the 'sh' step
+                sh "docker rmi -f ${dockerImageName}"
+            }
+        }
+    }
+}
