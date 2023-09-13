@@ -81,8 +81,6 @@ Follow these steps to set up and run the Jenkins pipeline:
 
 3. Configure Jenkins to use Docker Hub credentials by creating a Jenkins credential named 'Docker' with your Docker Hub username and password/token.
 
-4. Adjust the `DOCKER_IMAGE_NAME` variable in the Jenkinsfile to match your desired Docker image name.
-
 ## Usage
 
 1. Trigger the Jenkins pipeline manually or set up a webhook for automatic builds.
