@@ -8,16 +8,15 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "shahid199578/${env.JOB_NAME.toLowerCase()}"
         DOCKER_HUB_CREDENTIALS = 'Docker'
-        dockerImageName = "${IMAGE_NAME}:${BUILD_NUMBER}"
+        dockerImageName = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
     }
 
     stages {
         stage('Git Checkout') {
             steps {
                 // Checkout the Dockerfile and any other necessary files from your repository
-                git branch: 'main' , credentialsId: '', url: 'https://github.com/Shahid199578/dockerimagewithjenkins.git'
+                git branch: 'main', credentialsId: '', url: 'https://github.com/Shahid199578/dockerimagewithjenkins.git'
             }
         }
         stage ('Maven Build') {
