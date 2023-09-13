@@ -26,12 +26,6 @@ This Jenkins pipeline automates the process of building a Maven-based Java appli
 
 - this post-build stage removes the locally built Docker image to avoid cluttering the Jenkins server.
 
-
-
-## Jenkins Environment Variables
-
-The pipeline uses environment variables to configure and customize the build and deployment process. Here's how to create and configure environment variables in Jenkins:
-
 ## Environment Variables
 The pipeline uses several environment variables to configure and customize the build and deployment process:
 
