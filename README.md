@@ -1,5 +1,8 @@
 # Jenkins Pipeline for Building and Pushing Docker Images
 
+![image](https://github.com/Shahid199578/Jenkins-Docker/assets/118649415/f033d925-676f-4c5a-9b8d-15bfa43d4a70)
+
+
 ## Overview
 
 This Jenkins pipeline automates the process of building a Maven-based Java application, creating a Docker image, and pushing it to Docker Hub. The pipeline is defined in the provided Jenkinsfile and consists of the following stages:
