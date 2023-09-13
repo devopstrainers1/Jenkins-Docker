@@ -36,7 +36,7 @@ The pipeline uses several environment variables to configure and customize the b
 
 - `DOCKER_HUB_CREDENTIALS`: This variable is set to the name of a Jenkins credential named 'Docker'. It's used for authentication when pushing the Docker image to Docker Hub.
 
-- `dockerImageName`: This variable represents the full name and tag of the Docker image. It's constructed using the global variable `${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase. For example, if `${MY_REPO}` is set to 'dockerhub_username' and your Jenkins job is named 'MyApp', the `dockerImageName` will be 'dockerhub_username/myapp:42', where '42' is the Jenkins build number.
+- `DOCKER_IMAGE_NAME`: This variable represents the full name and tag of the Docker image. It's constructed using the global variable `${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase. For example, if `${MY_REPO}` is set to 'dockerhub_username' and your Jenkins job is named 'MyApp', the `DOCKER_IMAGE_NAME` will be 'dockerhub_username/myapp:42', where '42' is the Jenkins build number.
 Please ensure you have configured the Jenkins global variable ${MY_REPO} with your Docker Hub username as per your setup.
 
 ### Creating Jenkins global variable
