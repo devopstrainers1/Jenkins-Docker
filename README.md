@@ -19,7 +19,8 @@ This Jenkins pipeline automates the process of building a Maven-based Java appli
 
 ### 4. Push to Docker Hub
 
-- In this stage, the built Docker image is pushed to Docker Hub. Docker Hub credentials are stored in a Jenkins credential named 'Docker'.
+   - In this stage, the built Docker image is pushed to Docker Hub. Docker Hub credentials are stored in a Jenkins credential named 'Docker'.
+   - After successfully pushing the image, the pipeline logs out from Docker Hub.
 
 ### 5. Post-build Cleanup
 
