@@ -9,7 +9,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_CREDENTIALS = 'Docker'
-        dockerImageName = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
+        DOCKER_IMAGE_NAME = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
     }
 
     stages {
@@ -43,7 +43,7 @@ pipeline {
             steps {        
                 // Build the Docker image
                 script {
-                    docker.build("${dockerImageName}", ".")
+                    docker.build("${DOCKER_IMAGE_NAME}", ".")
                 }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
                 script {
                     docker.withRegistry('', "${DOCKER_HUB_CREDENTIALS}") {
                         // Push the built image to Docker Hub
-                        docker.image("${dockerImageName}").push()
+                        docker.image("${DOCKER_IMAGE_NAME}").push()
                     }
                 }
             }
@@ -69,7 +69,7 @@ pipeline {
                 
                 
                 // Remove the Docker image using the 'sh' step
-                sh "docker rmi -f ${dockerImageName}"
+                sh "docker rmi -f ${DOCKER_IMAGE_NAME}"
             }
         }
     }
