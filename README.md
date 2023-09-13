@@ -25,6 +25,46 @@ This Jenkins pipeline automates the process of building a Maven-based Java appli
 
 - After successfully pushing the Docker image to Docker Hub, this post-build stage removes the locally built Docker image to avoid cluttering the Jenkins server.
 
+
+
+## Jenkins Environment Variables
+
+The pipeline uses environment variables to configure and customize the build and deployment process. Here's how to create and configure environment variables in Jenkins:
+
+## Environment Variables
+The pipeline uses several environment variables to configure and customize the build and deployment process:
+
+- `DOCKER_HUB_CREDENTIALS`: This variable is set to the name of a Jenkins credential named 'Docker'. It's used for authentication when pushing the Docker image to Docker Hub.
+
+- `dockerImageName`: This variable represents the full name and tag of the Docker image. It's constructed using the global variable `${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase. For example, if `${MY_REPO}` is set to 'dockerhub_username' and your Jenkins job is named 'MyApp', the `dockerImageName` will be 'dockerhub_username/myapp:42', where '42' is the Jenkins build number.
+Please ensure you have configured the Jenkins global variable ${MY_REPO} with your Docker Hub username as per your setup.
+
+### Creating Jenkins global variable
+
+1. **Log in to Jenkins:** Open your Jenkins instance in a web browser and log in.
+
+2. **Accessing Global Configuration:** Click on "Manage Jenkins" in the Jenkins dashboard.
+
+3. **Configure System:** Choose "Configure System" from the list of options.
+
+4. **Adding Environment Variables:**
+   - Scroll down to the "Global properties" section.
+   - Check the box for "Environment variables."
+   - Click the "Add" button to add a new environment variable.
+   - Provide a name for the variable (e.g., `MY_REPO`) and its corresponding value (e.g., `dockerhub_username`).
+   - Click "Save" to save your changes.
+
+### Referencing Environment Variables in the Pipeline
+
+In your Jenkins pipeline script (`Jenkinsfile`), you can reference the environment variables as follows:
+
+```groovy
+environment {
+        DOCKER_HUB_CREDENTIALS = 'Docker'
+        dockerImageName = "${MY_REPO}/${env.JOB_NAME.toLowerCase()}:${BUILD_NUMBER}"  // ${MY_REPO}` (which is your Docker Hub username) and the Jenkins job name converted to lowercase
+    }
+```
+
 ## Getting Started
 
 Follow these steps to set up and run the Jenkins pipeline:
@@ -83,3 +123,8 @@ We are grateful for the contributions of these tools and services in streamlinin
 ## Contact
 
 If you have any questions or need assistance, feel free to contact [Mohd Shahid](mailto:shahid199578@gmail.com).
+
+
+
+- This 'README.md' file provides an overview and detailed steps for the Jenkins pipeline, helping users understand its purpose and how to set it up. You can replace the placeholders with your specific project details.
+
