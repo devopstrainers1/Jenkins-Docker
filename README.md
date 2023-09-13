@@ -119,5 +119,5 @@ If you have any questions or need assistance, feel free to contact [Mohd Shahid]
 
 
 
-- This 'README.md' file provides an overview and detailed steps for the Jenkins pipeline, helping users understand its purpose and how to set it up. You can replace the placeholders with your specific project details.
+This 'README.md' file provides an overview and detailed steps for the Jenkins pipeline, helping users understand its purpose and how to set it up. You can replace the placeholders with your specific project details.
 
