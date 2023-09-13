@@ -57,8 +57,16 @@ pipeline {
                     }
                 }
             }
+            post {
+                always {
+                // Logout from Docker Hub
+                     script {
+                        sh "docker logout"
+                     }
+                }
+            }
+            
         }
-        
     }
     
     post {
