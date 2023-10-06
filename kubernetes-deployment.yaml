@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-app-container
-        image: $(DOCKER_IMAGE_NAME)
+        image: shahid199578/ecs:6
         ports:
         - containerPort: 8080
 ---
